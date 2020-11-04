@@ -29,7 +29,7 @@ class Vente(models.Model):
 		super().save(*args, **kwargs)
 		produit = self.product
 		produit.qtt -= self.qtt
-		product.save()
+		produit.save()
 
 class Achat(models.Model):
 	product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
@@ -43,7 +43,7 @@ class Achat(models.Model):
 		super().save(*args, **kwargs)
 		produit = self.product
 		produit.qtt += self.qtt
-		product.save()
+		produit.save()
 
 
 
