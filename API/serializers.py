@@ -13,11 +13,29 @@ class PrixSerializer(serializers.ModelSerializer):
 		fields = "__all__"
 
 class VenteSerializer(serializers.ModelSerializer):
+	product = serializers.SerializerMethodField()
+	product_id = serializers.SerializerMethodField()
+
+	def get_product(self, obj):
+		return obj.product.name
+
+	def get_product_id(self, obj):
+		return obj.product.id
+
 	class Meta:
 		model = Vente
-		fields = "__all__"
+		fields = "id", "qtt", "date", "product", "product_id"
 
 class AchatSerializer(serializers.ModelSerializer):
+	product = serializers.SerializerMethodField()
+	product_id = serializers.SerializerMethodField()
+
+	def get_product(self, obj):
+		return obj.product.name
+
+	def get_product_id(self, obj):
+		return obj.product.id
+
 	class Meta:
 		model = Achat
-		fields = "__all__"
+		fields = "id", "qtt", "date", "product", "product_id"
