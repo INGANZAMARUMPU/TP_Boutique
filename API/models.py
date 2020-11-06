@@ -4,6 +4,7 @@ from django.utils import timezone
 class Product(models.Model):
 	name = models.CharField(max_length=32)
 	qtt = models.IntegerField(default=0)
+	unite = models.CharField(max_length=10)
 
 	def __str__(self):
 		return f"{self.name}({self.qtt})"

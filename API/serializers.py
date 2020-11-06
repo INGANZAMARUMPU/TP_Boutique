@@ -11,6 +11,7 @@ class PrixSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Prix
 		fields = "__all__"
+		depth = 1
 
 class VenteSerializer(serializers.ModelSerializer):
 	product = serializers.SerializerMethodField()
