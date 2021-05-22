@@ -2,16 +2,21 @@ from rest_framework import serializers
 
 from .models import *
 
-class ProductSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Product
-		fields = "__all__"
-
 class PrixSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Prix
 		fields = "__all__"
-		depth = 1
+
+class ProductSerializer(serializers.ModelSerializer):
+	prix = serializers.SerializerMethodField()
+
+	def get_prix(self, obj):
+		prix = Prix.objects.filter(product=obj.id).last()
+		return PrixSerializer(prix).data
+
+	class Meta:
+		model = Product
+		fields = "__all__"
 
 class VenteSerializer(serializers.ModelSerializer):
 	product = serializers.SerializerMethodField()

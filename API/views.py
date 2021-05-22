@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
@@ -8,13 +9,15 @@ from .serializers import *
 
 class ProductViewset(viewsets.ModelViewSet):
 	authentication_classes = [SessionAuthentication, TokenAuthentication]
-	permission_classes = [IsAuthenticatedOrReadOnly, ]
+	# permission_classes = [IsAuthenticatedOrReadOnly, ]
+	permission_classes = []
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
 
 class PrixViewset(viewsets.ModelViewSet):
 	authentication_classes = [SessionAuthentication, TokenAuthentication]
-	permission_classes = [IsAuthenticatedOrReadOnly, ]
+	# permission_classes = [IsAuthenticatedOrReadOnly, ]
+	permission_classes = []
 	queryset = Prix.objects.all()
 	serializer_class = PrixSerializer
 
@@ -37,3 +40,6 @@ class CustomAuthToken(ObtainAuthToken):
 		user = serializer.validated_data['user'];
 		token, created = Token.objects.get_or_create(user=user);
 		return Response({'token': token.key,})
+
+def home(request):
+	return render(request, 'index.html', {})

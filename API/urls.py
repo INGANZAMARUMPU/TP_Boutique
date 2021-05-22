@@ -10,6 +10,7 @@ router.register("achat", AchatViewset)
 router.register("vente", VenteViewset)
 
 urlpatterns = [
-	path("", include(router.urls)),
+	path("", home, name="home"),
+	path("api/", include(router.urls)),
 	path("login/", CustomAuthToken.as_view()),
 ]

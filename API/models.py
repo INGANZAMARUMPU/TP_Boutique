@@ -13,7 +13,7 @@ class Prix(models.Model):
 	product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
 	prix_achat = models.IntegerField()
 	prix_vente = models.IntegerField()
-	date = models.DateField(default=timezone.now)
+	date = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return f"{self.product}(achat:{self.prix_achat} vente:{self.prix_vente})"
