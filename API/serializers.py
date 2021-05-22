@@ -7,6 +7,11 @@ class PrixSerializer(serializers.ModelSerializer):
 		model = Prix
 		fields = "__all__"
 
+class MusicSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Music
+		fields = "__all__"
+
 class ProductSerializer(serializers.ModelSerializer):
 	prix = serializers.SerializerMethodField()
 

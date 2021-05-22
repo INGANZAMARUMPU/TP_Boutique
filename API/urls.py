@@ -8,6 +8,7 @@ router.register("product", ProductViewset)
 router.register("prix", PrixViewset)
 router.register("achat", AchatViewset)
 router.register("vente", VenteViewset)
+router.register("music", MusicViewset)
 
 urlpatterns = [
 	path("", home, name="home"),

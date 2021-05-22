@@ -1,7 +1,10 @@
 *.pyc
 *.jpg
 *.png
+*.mp3
+*.js
 
 db.sqlite3
 
 **/migrations/*
+**/__*__/*

@@ -14,6 +14,13 @@ class ProductViewset(viewsets.ModelViewSet):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
 
+class MusicViewset(viewsets.ModelViewSet):
+	authentication_classes = [SessionAuthentication, TokenAuthentication]
+	# permission_classes = [IsAuthenticatedOrReadOnly, ]
+	permission_classes = []
+	queryset = Music.objects.all()
+	serializer_class = MusicSerializer
+
 class PrixViewset(viewsets.ModelViewSet):
 	authentication_classes = [SessionAuthentication, TokenAuthentication]
 	# permission_classes = [IsAuthenticatedOrReadOnly, ]
