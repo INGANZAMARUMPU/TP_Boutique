@@ -12,6 +12,7 @@ router.register("music", MusicViewset)
 
 urlpatterns = [
 	path("", home, name="home"),
+	path('music/<str:video_file>', video_stream, name='v_stream'),
 	path("api/", include(router.urls)),
 	path("login/", CustomAuthToken.as_view()),
 ]

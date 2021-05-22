@@ -1,11 +1,28 @@
 from django.shortcuts import render
+from django.http import HttpResponseNotFound
+
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.authtoken.views import ObtainAuthToken
 
+from ranged_response import RangedFileResponse
+
+import os, mimetypes
+
 from .models import *
 from .serializers import *
+
+
+def video_stream(request, video_file):
+	_file = "music/" + video_file
+	if not os.path.isfile(_file): return HttpResponseNotFound()
+	response = RangedFileResponse(
+		request, open(_file, 'rb'),
+		content_type=mimetypes.guess_type(_file)[0]
+	)
+	response['Content-Length'] = os.path.getsize(_file)
+	return response
 
 class ProductViewset(viewsets.ModelViewSet):
 	authentication_classes = [SessionAuthentication, TokenAuthentication]
